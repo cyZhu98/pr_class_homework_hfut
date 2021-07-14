@@ -59,6 +59,7 @@ def validate(model, loader): # 应该叫test
     test_acc = test_acc / len(test_data)  
     return test_acc
 
+
 # 定义模型，直接从torchvision导入
 model = torchvision.models.resnet50(pretrained=True)
 fc = nn.Linear(2048, out_features=2) 
@@ -82,15 +83,14 @@ test_loader = data.DataLoader(test_data, batch_size=batch_size, shuffle=False)
 
 fix_seed(0)  # 固定seed
 best_acc = 0  # acc为第一条件
-acc_record = [[] for _ in range(3)]  # 用于画图
 
 for ep in tqdm(range(epoch)):
     train_acc, train_loss = train_one_epoch(model, train_loader)
-    acc_record[0].append(train_acc)
+
     print(
         'Train Accuracy : {:.3f}, loss : {:.3f}'.format(train_acc, train_loss))
     test_acc = validate(model, test_loader)
-    acc_record[2].append(test_acc)
+
     print('Test Accuracy : {:.4f}'.format(test_acc))
     
     if test_acc > best_acc:
