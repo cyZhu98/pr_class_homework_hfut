@@ -4,13 +4,11 @@ from torch import optim
 import torchvision.transforms as T
 import torchvision.datasets as datasets
 import torchvision
-import numpy as np
 import torch.nn as nn
 from tqdm import tqdm
 
 # 固定seed
 def fix_seed(seed):
-    np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
 
@@ -43,6 +41,7 @@ def train_one_epoch(model, loader):
         target = label.data
         train_acc += sum(out.eq(target)).item()
     train_acc /= len(train_data)
+    
     return train_acc, train_loss
 
 
@@ -57,6 +56,7 @@ def validate(model, loader): # 应该叫test
         target = label.data
         test_acc += sum(out.eq(target)).item()
     test_acc = test_acc / len(test_data)  
+    
     return test_acc
 
 
