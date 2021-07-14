@@ -27,7 +27,7 @@ transform = T.Compose([
 
 def train_one_epoch(model, loader):
     model.train()
-    train_loss = 0  # 没用上
+    train_loss = 0  
     train_acc = 0
     for img, label in loader:
         img, label = img.cuda(), label.cuda()
@@ -44,7 +44,6 @@ def train_one_epoch(model, loader):
     
     return train_acc, train_loss
 
-
 @torch.no_grad()
 def validate(model, loader): # 应该叫test
     model.eval()
@@ -59,7 +58,6 @@ def validate(model, loader): # 应该叫test
     
     return test_acc
 
-
 # 定义模型，直接从torchvision导入
 model = torchvision.models.resnet50(pretrained=True)
 fc = nn.Linear(2048, out_features=2) 
@@ -68,10 +66,11 @@ model.fc = fc  # 替换最后一层
 print(model)
 if use_cuda:
     model = model.cuda()
+    
 lr = 3e-4
 batch_size = 64  # 根据自己的显存调整
-
 epoch = 30
+
 optimizer = optim.SGD(model.parameters(), lr=lr, momentum=0.9)
 criterion = nn.CrossEntropyLoss().cuda() if use_cuda else nn.CrossEntropyLoss()
 
