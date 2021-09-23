@@ -4,6 +4,8 @@
 # 使用方法
 安装Pytorch > 1.2，torchvision，tqdm（可有可无）
 
+下载数据集[百度网盘](https://pan.baidu.com/s/1Mw69hnDmekusZgRmfnXXQQ)提取码: 3ep5
+
 修改baseline.py中的路径
 ```bash
 python baseline.py
