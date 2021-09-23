@@ -2,7 +2,7 @@
 模式识别作业pytorch版百行baseline，仅供参考
 
 # 使用方法
-安装Pytorch > 1.2
+安装Pytorch > 1.2，torchvision，tqdm（可有可无）
 
 修改baseline.py中的路径
 ```bash
