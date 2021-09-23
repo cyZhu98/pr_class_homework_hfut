@@ -17,5 +17,4 @@ python baseline.py
 * 换其他模型
 * 修改优化器，换成Adam等
 * 加入更多的评价指标，比如F1-score
-* 多卡并行，(dataparallel)。如果有会distributedparallel的同学麻烦教教我怎么用
 * matplotlib画图
