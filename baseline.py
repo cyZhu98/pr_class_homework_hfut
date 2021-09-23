@@ -30,7 +30,8 @@ def train_one_epoch(model, loader):
     train_loss = 0  
     train_acc = 0
     for img, label in loader:
-        img, label = img.cuda(), label.cuda()
+        if use_cuda:
+            img, label = img.cuda(), label.cuda()
         optimizer.zero_grad()
         out = model(img)
         loss = criterion(out, label)
@@ -49,7 +50,8 @@ def validate(model, loader): # 应该叫test
     model.eval()
     test_acc = 0
     for img, label in loader:
-        img, label = img.cuda(), label.cuda()
+        if use_cuda:
+            img, label = img.cuda(), label.cuda()
         out = model(img)
         out = out.data.argmax(dim=1, keepdim=True).t().squeeze()  # 取值更大的作为结果，t+squeeze保证shape为(batch,)
         target = label.data
